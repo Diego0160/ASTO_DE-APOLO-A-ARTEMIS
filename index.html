@@ -150,6 +150,7 @@
       margin-bottom: 30px;
       border: 1px solid var(--border);
       border-radius: 14px;
+      display: flow-root;
     }
 
     .astro-box h4 {
@@ -166,11 +167,11 @@
 
     .astro-box img {
       height: auto;
-      max-width: 320px;
       width: 100%;
       float: right;
       margin: 0 0 12px 20px;
       border-radius: 12px;
+      display: block;
     }
 
     .center-img {
@@ -217,7 +218,65 @@
       padding-top: 8px;
     }
 
-    /* Tablets */
+    /* ── Desktop mediano (769px – 992px): tablet landscape + desktop pequeño ── */
+    @media (min-width: 769px) {
+      .astro-box img {
+        float: right;
+        max-width: 320px;
+        width: 34%;
+        margin: 0 0 12px 20px;
+      }
+    }
+
+    /* ── Desktop grande y TV HD ── */
+    @media (min-width: 1400px) {
+      .wiki-wrap {
+        max-width: 1500px;
+      }
+
+      body {
+        font-size: 18px;
+      }
+
+      .w-hero {
+        padding: 22px;
+      }
+
+      .astro-box img {
+        max-width: 360px;
+        width: 30%;
+      }
+    }
+
+    /* ── TV 4K y pantallas ultra-anchas ── */
+    @media (min-width: 2000px) {
+      .wiki-wrap {
+        max-width: 1800px;
+      }
+
+      body {
+        font-size: 20px;
+      }
+
+      .w-hero {
+        padding: 30px;
+      }
+
+      .astro-box img {
+        max-width: 420px;
+        width: 28%;
+      }
+
+      .page-title strong {
+        font-size: 2.2rem;
+      }
+
+      th, td {
+        padding: 16px;
+      }
+    }
+
+    /* ── Tablet mediana (769px – 992px landscape / portrait estrecho) ── */
     @media (max-width: 992px) {
       .hero {
         padding: 12px;
@@ -232,7 +291,17 @@
       }
     }
 
-    /* Móviles */
+    /* ── Tablet portrait y móvil grande (600px – 768px) ── */
+    @media (max-width: 768px) and (min-width: 600px) {
+      .astro-box img {
+        float: right;
+        max-width: 220px;
+        width: 42%;
+        margin: 0 0 12px 16px;
+      }
+    }
+
+    /* ── Móvil ── */
     @media (max-width: 768px) {
       .hero {
         padding: 10px;
@@ -256,17 +325,6 @@
         padding: 16px;
       }
 
-      .astro-box img {
-        float: none;
-        display: block;
-        max-width: 100%;
-        margin: 0 auto 14px auto;
-      }
-
-      table {
-        min-width: 700px;
-      }
-
       h3.section-title {
         font-size: 1.15rem;
       }
@@ -280,18 +338,111 @@
       }
     }
 
-    /* Pantallas grandes / TV */
-    @media (min-width: 1600px) {
-      .wiki-wrap {
-        max-width: 1500px;
+    /* ── Móvil pequeño: imagen a full-width ── */
+    @media (max-width: 599px) {
+      .astro-box img {
+        float: none;
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto 14px auto;
       }
 
+      table {
+        min-width: 760px;
+      }
+    }
+
+    /* ── Impresión / Guardar como PDF ── */
+    @media print {
       body {
-        font-size: 18px;
+        background: #ffffff;
+        color: #000000;
+        font-size: 11pt;
+        line-height: 1.5;
+      }
+
+      .hero {
+        padding: 0;
+      }
+
+      .wiki-wrap {
+        max-width: 100%;
       }
 
       .w-hero {
-        padding: 22px;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+      }
+
+      .page-title {
+        background-color: #ffc5d3;
+        border-left: 6px solid #305CDE;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .toc {
+        background-color: #f0f4f8;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        page-break-inside: avoid;
+      }
+
+      thead tr {
+        background-color: #0b3d91;
+        color: #ffffff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .astro-box {
+        page-break-inside: avoid;
+        border: 1px solid #dee2e6;
+        background-color: #f8f9fa;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .astro-box img {
+        float: right;
+        max-width: 200px;
+        width: 30%;
+      }
+
+      .table-wrap {
+        overflow: visible;
+      }
+
+      table {
+        min-width: 0;
+        width: 100%;
+      }
+
+      h3.section-title {
+        page-break-after: avoid;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .toc a {
+        color: #000000;
+      }
+
+      .center-img img {
+        max-width: 60%;
+        margin: 0 auto;
+        display: block;
       }
     }
   </style>
@@ -405,11 +556,9 @@
 
         <div id="neil-armstrong" class="astro-box">
           <h4>Neil Armstrong — Comandante</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://www.nasa.gov/wp-content/uploads/2023/03/464436main_S69-31741_full.jpg?resize=471,600"
-                 alt="Retrato oficial de Neil Armstrong">
-          </p>
+          <img class="img-fluid"
+               src="https://www.nasa.gov/wp-content/uploads/2023/03/464436main_S69-31741_full.jpg?resize=471,600"
+               alt="Retrato oficial de Neil Armstrong">
           <h5>1. Experiencia</h5>
           <p>
             Fue el <strong>comandante del Apolo 11</strong>, el primer intento de aterrizar un vehículo tripulado en la Luna.
@@ -449,11 +598,9 @@
 
         <div id="buzz-aldrin" class="astro-box">
           <h4>Buzz Aldrin — Piloto del Módulo Lunar</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://images-assets.nasa.gov/image/S69-31742/S69-31742~large.jpg?w=480&amp;h=600&amp;fit=crop&amp;crop=faces%2Cfocalpoint"
-                 alt="Retrato oficial de Buzz Aldrin">
-          </p>
+          <img class="img-fluid"
+               src="https://images-assets.nasa.gov/image/S69-31742/S69-31742~large.jpg?w=480&h=600&fit=crop&crop=faces%2Cfocalpoint"
+               alt="Retrato oficial de Buzz Aldrin">
           <h5>1. Experiencia</h5>
           <p>
             Voló <strong>66 misiones de combate</strong> durante la Guerra de Corea (1951), por las que recibió varias condecoraciones.
@@ -490,11 +637,9 @@
 
         <div id="michael-collins" class="astro-box">
           <h4>Michael Collins — Piloto del Módulo de Mando</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://images-assets.nasa.gov/image/S69-31743/S69-31743~large.jpg?w=480&amp;h=600&amp;fit=crop&amp;crop=faces%2Cfocalpoint"
-                 alt="Retrato oficial de Michael Collins">
-          </p>
+          <img class="img-fluid"
+               src="https://images-assets.nasa.gov/image/S69-31743/S69-31743~large.jpg?w=480&h=600&fit=crop&crop=faces%2Cfocalpoint"
+               alt="Retrato oficial de Michael Collins">
           <h5>1. Experiencia</h5>
           <p>
             El 20 y 21 de julio de 1969, orbitó a <strong>111 km</strong> sobre la superficie lunar mientras Armstrong y Aldrin exploraban el terreno.
@@ -546,11 +691,9 @@
 
         <div id="reid-wiseman" class="astro-box">
           <h4>Reid Wiseman — Comandante</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016434-alt.jpg?resize=1500,2000"
-                 alt="Retrato oficial de Reid Wiseman">
-          </p>
+          <img class="img-fluid"
+               src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016434-alt.jpg?resize=1500,2000"
+               alt="Retrato oficial de Reid Wiseman">
           <h5>1. Experiencia</h5>
           <p>
             Cuenta con <strong>27 años de servicio en la Marina de EE.UU.</strong> y fue seleccionado astronauta por la NASA en 2009.
@@ -585,11 +728,9 @@
 
         <div id="victor-glover" class="astro-box">
           <h4>Victor Glover — Piloto</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016433-alt.jpg?resize=300,400"
-                 alt="Retrato oficial de Victor Glover">
-          </p>
+          <img class="img-fluid"
+               src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016433-alt.jpg?resize=300,400"
+               alt="Retrato oficial de Victor Glover">
           <h5>1. Experiencia</h5>
           <p>
             Seleccionado astronauta en 2013. Piloto del <em>Crew Dragon Resilience</em> en <strong>Crew-1</strong> (noviembre 2020 – mayo 2021):
@@ -623,11 +764,9 @@
 
         <div id="christina-koch" class="astro-box">
           <h4>Christina Koch — Especialista de Misión 1</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016435-alt.jpg?resize=300,400"
-                 alt="Retrato oficial de Christina Koch">
-          </p>
+          <img class="img-fluid"
+               src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016435-alt.jpg?resize=300,400"
+               alt="Retrato oficial de Christina Koch">
           <h5>1. Experiencia</h5>
           <p>
             Seleccionada por la NASA en 2013. Acumula <strong>328 días en el espacio</strong> —el vuelo espacial más largo realizado por una mujer—,
@@ -663,11 +802,9 @@
 
         <div id="jeremy-hansen" class="astro-box">
           <h4>Jeremy Hansen — Especialista de Misión 2</h4>
-          <p>
-            <img class="img-fluid"
-                 src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016436-alt.jpg?resize=300,400"
-                 alt="Retrato oficial de Jeremy Hansen">
-          </p>
+          <img class="img-fluid"
+               src="https://www.nasa.gov/wp-content/uploads/2023/06/jsc2023e0016436-alt.jpg?resize=300,400"
+               alt="Retrato oficial de Jeremy Hansen">
           <h5>1. Experiencia</h5>
           <p>
             Sirvió en la <strong>Real Fuerza Aérea Canadiense</strong> alcanzando el rango de coronel, volando cazas CF-18 entre 2004 y 2007
